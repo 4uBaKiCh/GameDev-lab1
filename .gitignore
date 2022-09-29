@@ -2,6 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+[Ll]esson[123]/Assets/TextMesh Pro
 [Ll]esson[123]/[Ll]ibrary/
 [Ll]esson[123]/[Tt]emp/
 [Ll]esson[123]/[Oo]bj/
