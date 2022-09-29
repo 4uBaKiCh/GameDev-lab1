@@ -174,25 +174,98 @@
 using UnityEngine.UI;
 using TMPro;
 ```
+`[SerializeField]` позволяет взаимодействовать с переменными в редакторе сцены
+
+![](Lesson3Screens/Lesson3_3.png)
+
+Привязал созданные кнопку и поле к скрипту
+
+Для генерации кубиков буду использовать `Object.Instantiate` по 3D вектору
+```c#
+//public static Object Instantiate(Object original, Vector3 position, Quaternion rotation);
+```
+Мне не хватает объекта `Cube`, на основе которого будут генерироваться остальные, создал 1 и поменял скейл на `(50, 50, 50)`, потому что размеры `Canvas` не менялиь, и разбираться с этим буду в другой раз, сегодня генерация кубиков.
 
 ```c#
-
+[SerializeField] private GameObject cubePrefab;
 ```
+
+![](Lesson3Screens/Lesson3_4.png)
+
+А также я добавил объект `Canvas` в скрипт, чтобы заставить его исчезнуть по нажатию кнопки.
 
 ```c#
-
+[SerializeField] private Canvas canvas;
 ```
+
+Привязал куб и канвас к скрипту
+
+![](Lesson3Screens/Lesson3_5.png)
+
+Осталось написать алгоритм генерации рандомных координат 3D вектора
+```c#
+private int cubeCount;
+
+if (inputText != null) cubeCount = int.Parse(inputText.text);
+        for (int i = 0; i < cubeCount; i++)
+        {
+            var value = Random.insideUnitCircle * 1000;
+
+            Vector3 pos = new Vector3(
+                value.x,
+                Random.Range(0,100),
+                value.y);
+        }
+```
+Запускаться алгоритм будет по нажатию кнопки, через "прослушку"
+Осталось добавить в конце цикла генерацию объекта, а после цикла скрыть `Canvas`, и вот итоговый код:
 
 ```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
+
+public class Generator : MonoBehaviour
+{
+    [SerializeField] private TMP_InputField inputText;
+    [SerializeField] private Button button;
+    [SerializeField] private GameObject cubePrefab;
+    [SerializeField] private Canvas canvas;
+    private int cubeCount;
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        button.onClick.AddListener(TaskOnClick);
+    }
+
+    public void TaskOnClick()
+    {
+        if (inputText != null) cubeCount = int.Parse(inputText.text);
+        for (int i = 0; i < cubeCount; i++)
+        {
+            var value = Random.insideUnitCircle * 1000;
+
+            Vector3 pos = new Vector3(
+                value.x,
+                Random.Range(0,100),
+                value.y);
+            Instantiate(cubePrefab, pos, Quaternion.identity);
+        }
+        canvas.enabled = false;
+    }
+}
 ```
+Жмем `play`
 
-```c#
+![](Lesson3Screens/Lesson3_6.gif)
 
-```
 ## Выводы
 
-Абзац умных слов о том, что было сделано и что было узнано.
+Мне удалось настроить окружение `Unity`, выполнить все задания. Я подружился с документацией `Unity`, в конорой нашел много интересных функций и методов. А ещё я научился заполнять `Readme` на `github`
 
 | Plugin | README |
 | ------ | ------ |
