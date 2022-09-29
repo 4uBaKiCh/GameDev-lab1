@@ -42,29 +42,52 @@
 Ход работы:
 
 1) Создать новый проект из шаблона 3D – Core;
+
 ![](Lesson1Screens/Lesson1_1_1.png)
+
 ![](Lesson1Screens/Lesson1_1_2.png)
+
 2) Проверить, что настроена интеграция редактора Unity и Visual Studio Code (пункты 8-10 введения);
+
 ![](Lesson1Screens/Lesson1_2_1.png)
+
 3) Создать объект `Plane`;
+
 ![](Lesson1Screens/Lesson1_3_1.png)
+
 4) Создать объект `Cube`;
+
 ![](Lesson1Screens/Lesson1_4_1.png)
+
 5) Создать объект `Sphere`;
+
 ![](Lesson1Screens/Lesson1_5_1.png)
+
 6) Установить компонент `Sphere Collider` для объекта `Sphere`;
 7) Настроить `Sphere Collider` в роли триггера;
+
 ![](Lesson1Screens/Lesson1_7_1.png)
+
 8) Объект куб перекрасить в красный цвет;
+
 ![](Lesson1Screens/Lesson1_8_1.png)
+
 9) Добавить кубу симуляцию физики, при это куб не должен проваливаться под `Plane`;
+
 ![](Lesson1Screens/Lesson1_9_1.png)
+
 10) Написать скрипт, который будет выводить в консоль сообщение о том, что объект Sphere столкнулся с объектом `Cube`;
+
 ![](Lesson1Screens/Lesson1_10_1.png)
+
 ![](Lesson1Screens/Lesson1_10_2.png)
+
 11) При столкновении `Cube` должен менять свой цвет на зелёный, а при завершении столкновения обратно на красный.
+
 ![](Lesson1Screens/Lesson1_11_1.png)
+
 ![](Lesson1Screens/Lesson1_11_2.png)
+
 ![](Lesson1Screens/Lesson1_11_3.png)
 
 ## Задание 2
@@ -73,18 +96,27 @@
 - Создайте три различных примера работы компонента `RigidBody`.
 
 Ход работы:  
-- Что произойдет с координатами объекта, если он перестанет быть дочерникм?  
-Я создал новый объект `Cylinder` и задал ему координаты (10, 5, 5).  
-![](Lesson1Screens/Lesson2_1_1.png)
-Затем создал дочерний объект `Capsule`, который появился в объекте `Cylinder`.  
-![](Lesson1Screens/Lesson2_2_1.png)
-Изменил координаты `Capsule` на (1, 1, 1), объект сместился относительно `Cylinder` на эти значения.  
-![](Lesson1Screens/Lesson2_3_1.png)
-Предположил, что отображение `Capsule` складывается из координат родителя `Cylinder` + свои координаты (10+1, 5+1, 5+1).  
-После удаления связи с родителем, проверил координаты (11, 6, 6) и мое предположение оказалось верным.  
-![](Lesson1Screens/Lesson2_4_1.png)
-- Создайтери различных примера работы компонента `RigidBody`.  
-Я создал 3 объекта: `Plane`, `Cube`, и `Sphere`  
+
+1.1. Я создал новый объект `Cylinder` и задал ему координаты `(10, 5, 5)`.  
+
+![](Lesson2Screens/Lesson2_1_1.png)
+
+1.2. Затем создал дочерний объект `Capsule`, который появился в объекте `Cylinder`.  
+
+![](Lesson2Screens/Lesson2_1_2.png)
+
+1.3. Изменил координаты `Capsule` на `(1, 1, 1)`, объект сместился относительно `Cylinder` на эти значения.  
+
+![](Lesson2Screens/Lesson2_1_3.png)
+
+1.4. Предположил, что отображение `Capsule` складывается из координат родителя `Cylinder` + свои координаты `(10+1, 5+1, 5+1)`.  
+После удаления связи с родителем, проверил координаты `(11, 6, 6)` и мое предположение оказалось верным.  
+
+![](Lesson2Screens/Lesson2_1_4.png)
+  
+2. Я создал 3 объекта: `Plane`, `Cube`, и `Sphere`  
+
+
 
 Сценарий 1:  
 `Plane` со свойствами `Use Gravity`: off и `Is Kinematic`: on;  
@@ -93,11 +125,15 @@
 Сфера будет висеть в воздухе и никуда не двинется, равно как и куб.  
 Пластина никак не реагирует на изменение параметра `Use Gravity`.  
 
+![](Lesson2Screens/Lesson2_2_1.png)
+
 Сценарий 2:  
 `Plane` со свойствами `Use Gravity`: off и `Is Kinematic`: on;  
 `Cube` со свойствами: `Use Gravity`: off и `Is Kinematic`: on;  
 `Sphere` со свойствами: `Use Gravity`: on и `Is Kinematic`: off;  
 Сфера упадет на куб, куб не двинется.  
+
+![](Lesson2Screens/Lesson2_2_2.gif)
 
 Сценарий 3:  
 `Plane` со свойствами `Use Gravity`: off и `Is Kinematic`: on;  
@@ -105,17 +141,55 @@
 `Sphere` со свойствами: `Use Gravity`: on и `Is Kinematic`: off;  
 Сфера упадет на куб, куб от столкновения со сферой придет в движение и столкнется с пластиной. 
 
+![](Lesson2Screens/Lesson2_2_3.gif)
+
 Сценарий 4:  
 `Plane` со свойствами `Use Gravity`: off и `Is Kinematic`: off;  
 `Cube` со свойствами: `Use Gravity`: off и `Is Kinematic`: off;  
 `Sphere` со свойствами: `Use Gravity`: on и `Is Kinematic`: off;  
 Сфера упадет на куб, куб от столкновения со сферой придет в движение и они вместе провалятся сквозь пластину в бесконечность. 
 
+![](Lesson2Screens/Lesson2_2_4.gif)
+
 ## Задание 3
 ### Реализуйте на сцене генерацию n кубиков. Число n вводится пользователем после старта сцены.
 
 Ход работы:
 
+Для начала я создал новый проект и добавил 2 UI элемента: `TMP_InputField` и `Button`.  
+
+![](Lesson3Screens/Lesson3_1.png)
+
+Затем я создал скрипт `Generator.cs` и назначил его объекту `Canvas`, на котором расположены кнопка и поле для текста.
+
+![](Lesson3Screens/Lesson3_2.png)
+
+Приступил к написанию скрипта, для взаимодействия с полем текста и кнопкой добавил соответствующие `[SerializeField]`:
+```c#
+[SerializeField] private TMP_InputField inputText;
+[SerializeField] private Button button;
+```
+А также добавил в `using` необходимые библиотеки:
+```c#
+using UnityEngine.UI;
+using TMPro;
+```
+
+```c#
+
+```
+
+```c#
+
+```
+
+```c#
+
+```
+
+```c#
+
+```
 ## Выводы
 
 Абзац умных слов о том, что было сделано и что было узнано.
